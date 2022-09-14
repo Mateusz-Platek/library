@@ -61,30 +61,44 @@ let main = document.querySelector('.main');
 function printBooks() {
     main.textContent = '';
     for(let i = 0; i < books.length; i++) {    
-        let div = document.createElement('div');
+        let card = document.createElement('div');
+        card.setAttribute('data', `${i}`);
         let titleDiv = document.createElement('div')
         titleDiv.textContent = books[i].title;
-        div.appendChild(titleDiv);
+        card.appendChild(titleDiv);
         let authorDiv = document.createElement('div');
         authorDiv.textContent = books[i].author;
-        div.appendChild(authorDiv);
+        card.appendChild(authorDiv);
         let pagesDiv = document.createElement('div');
         pagesDiv.textContent = books[i].pages + ' pages';
-        div.appendChild(pagesDiv);
+        card.appendChild(pagesDiv);
         let readButton = document.createElement('button');
         if(books[i].read == true) {
             readButton.textContent = 'Read';
         } else {
             readButton.textContent = 'Not read';
         }
-        readButton.classList.add(`read-${i}`);
-        div.appendChild(readButton);
+        readButton.addEventListener('click', () => {
+            let changeRead = card.getAttribute('data');
+            console.log(books[changeRead].read);
+            if(books[changeRead].read == true) {
+                books[changeRead].read = false;
+            } else {
+                books[changeRead].read = true;
+            }
+            printBooks();
+        })
+        card.appendChild(readButton);
         let removeButton = document.createElement('button');
         removeButton.textContent = 'Remove';
-        removeButton.classList.add(`remove-${i}`);
-        div.appendChild(removeButton);
-        div.classList.add('book');
-        main.appendChild(div);
+        removeButton.addEventListener('click', () => {
+            let removeObj = card.getAttribute('data');
+            books.splice(removeObj, 1);
+            printBooks();
+        });
+        card.appendChild(removeButton);
+        card.classList.add('book');
+        main.appendChild(card);
     }
 }
 
@@ -93,4 +107,3 @@ add.addEventListener('click', () => {
     printBooks();
     closeFun();
 });
-
