@@ -28,7 +28,13 @@ button {
     border-radius: 50px;
 }
 
-.form {
+.white {
+    background-color: white;
+    color: black;
+    border: 1px solid black;
+}
+
+form {
     width: 400px;
     height: 400px;
     position: absolute;
@@ -45,19 +51,34 @@ button {
     font-size: 20px;
 }
 
-.form > div {
+.hidden {
+    top: -50%;
+    left: -50%;
+}
+
+form > div {
     width: 100%;
     display: flex;
     align-items: center;
+    gap: 24px;
     justify-content: space-between;
 }
 
-.form > div > div {
+form > div > div {
     display: flex;
     gap: 4px;
 }
 
-.form input {
+form input[type='text'], form input[type='number'] {
+    height: 28px;
+    font-size: 16px;
+    border: 0;
+    border-bottom: 1px solid black;
+    padding: 0 6px;
     outline: none;
+}
 
+.main {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
 }
