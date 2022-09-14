@@ -59,8 +59,8 @@ function addBookToList() {
 let main = document.querySelector('.main');
 
 function printBooks() {
-    for(let i = 0; i < books.length; i++) {
-        main.textContent = '';
+    main.textContent = '';
+    for(let i = 0; i < books.length; i++) {    
         let div = document.createElement('div');
         let titleDiv = document.createElement('div')
         titleDiv.textContent = books[i].title;
@@ -68,12 +68,29 @@ function printBooks() {
         let authorDiv = document.createElement('div');
         authorDiv.textContent = books[i].author;
         div.appendChild(authorDiv);
+        let pagesDiv = document.createElement('div');
+        pagesDiv.textContent = books[i].pages + ' pages';
+        div.appendChild(pagesDiv);
+        let readButton = document.createElement('button');
+        if(books[i].read == true) {
+            readButton.textContent = 'Read';
+        } else {
+            readButton.textContent = 'Not read';
+        }
+        readButton.classList.add(`read-${i}`);
+        div.appendChild(readButton);
+        let removeButton = document.createElement('button');
+        removeButton.textContent = 'Remove';
+        removeButton.classList.add(`remove-${i}`);
+        div.appendChild(removeButton);
+        div.classList.add('book');
         main.appendChild(div);
     }
 }
 
 add.addEventListener('click', () => {
     addBookToList();
-    //printBooks();
+    printBooks();
     closeFun();
 });
+

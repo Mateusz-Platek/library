@@ -80,5 +80,26 @@ form input[type='text'], form input[type='number'] {
 
 .main {
     display: grid;
-    grid-template-columns: repeat(4, 1fr);
+    grid-template-columns: repeat(6, 1fr);
+    padding: 20px;
+    gap: 16px;
+}
+
+.book {
+    font-size: 24px;
+    display: grid;
+    grid-template-rows: repeat(5, 1fr);
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    border: 2px solid black;
+    border-radius: 12px;
+    padding: 16px;
+    gap: 16px;
+}
+
+.book button:first-of-type{
+    background-color: white;
+    color: black;
+    border: 1px solid black;
 }
